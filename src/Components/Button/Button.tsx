@@ -58,7 +58,7 @@ const Button: React.FC<btn> = ({
           {!isSubmitting && trailingIcon && trailingIcon}
         </div>
       }
-    </button> 
+    </button>
   );
 };
 Button.defaultProps = {
