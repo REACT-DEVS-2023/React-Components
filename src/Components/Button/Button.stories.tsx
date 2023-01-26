@@ -1,6 +1,6 @@
-import "../../index.css";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
 import Button from "./Button";
-import { btn } from "./Button";
+import "../../index.css";
 
 export default {
   title: "Button",
@@ -10,13 +10,41 @@ export default {
       control: { type: "select" },
     },
   },
-};
+} as ComponentMeta<typeof Button>;
 
-export const template = (args: btn) => (
-  <Button {...args}>{args.children}</Button>
+const Template: ComponentStory<typeof Button> = (args) => (
+  <div className="w-48">
+    <Button {...args}>{args.children}</Button>
+  </div>
 );
 
-template.args = {
-  children: "Download",
+export const PrimaryButton = Template.bind({});
+PrimaryButton.args = {
   theme: "primary",
+  children: "Download",
+};
+
+export const SecondaryButton = Template.bind({});
+SecondaryButton.args = {
+  theme: "secondary",
+  children: "Download",
+};
+
+export const OutlinedButton = Template.bind({});
+OutlinedButton.args = {
+  theme: "outline",
+  children: "Download",
+};
+
+export const DangerButton = Template.bind({});
+DangerButton.args = {
+  theme: "danger",
+  children: "Download",
+};
+
+export const Disabled = Template.bind({});
+Disabled.args = {
+  theme: "secondary",
+  children: "Download",
+  disabled: true,
 };

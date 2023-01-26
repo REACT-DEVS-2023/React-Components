@@ -43,19 +43,19 @@ const Button: React.FC<btn> = ({
   return (
     <button
       {...rest}
-      className={
-        "py-2 px-4 h-full w-full,  rounded-md group shadow-lg  focus:outline-none focus:ring-2 focus:ring-offset-2 " +
-        themeClass +
-        " " +
+      className={cx(
+        "py-2 px-4 h-full w-full,  rounded-md group shadow-lg  focus:outline-none focus:ring-2 focus:ring-offset-2 ",
+        themeClass,
+        rest.disabled ? "cursor-not-allowed" : "",
         className
-      }
+      )}
       onClick={onClick}
     >
       {
         <div className={cx("flex h-full py-1")}>
-          {isSubmitting && "spinner"}
+          {!!leadingIcon ?? <span className="mx-4">{leadingIcon}</span>}
           {!isSubmitting && children}
-          {!isSubmitting && trailingIcon && trailingIcon}
+          {!!trailingIcon ?? <span className="mx-4">{trailingIcon}</span>}
         </div>
       }
     </button>
