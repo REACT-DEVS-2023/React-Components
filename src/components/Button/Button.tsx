@@ -13,6 +13,7 @@ export interface btn extends ButtonHTMLAttributes<HTMLButtonElement> {
   leadingIcon?: React.ReactNode;
   disabled?: boolean;
 }
+
 const Button: React.FC<btn> = ({
   children,
   theme,
@@ -61,6 +62,7 @@ const Button: React.FC<btn> = ({
     </button>
   );
 };
+
 Button.defaultProps = {
   theme: "outline",
 };
