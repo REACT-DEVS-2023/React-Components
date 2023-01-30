@@ -1,27 +1,34 @@
 import path from "path";
-module.exports = (options) => ({
-  mode: "production",
-  entry: {
-    // TODO: find a way to add every component automatically
-    Button: "./src/components/Button/Button.tsx",
-    CheckBox: "./src/components/Checkbox/Checkbox.tsx",
-    InputHelper: "./src/components/InputHelper/InputHelper.tsx",
-  },
+import fs from "fs";
 
-  output: {
-    path: path.resolve(__dirname, "reko"),
-    filename: "[name].bundle.js",
-  },
-  resolve: {
-    extensions: [".ts", ".tsx"],
-  },
-  module: {
-    rules: [
-      {
-        test: /\.tsx?$/,
-        use: "ts-loader",
-        exclude: /node_modules/,
-      },
-    ],
-  },
-});
+module.exports = () => {
+  let entry = {};
+  const files = fs.readdirSync(path.join(process.cwd(), "/src/components"));
+  files.forEach((file: any) => {
+    entry = {
+      ...entry,
+      [file]: path.join(process.cwd(), `/src/components/${file}/${file}.tsx`),
+    };
+  });
+
+  return {
+    mode: "production",
+    entry,
+    output: {
+      path: path.resolve(__dirname, "reko"),
+      filename: "[name].bundle.js",
+    },
+    resolve: {
+      extensions: [".ts", ".tsx"],
+    },
+    module: {
+      rules: [
+        {
+          test: /\.tsx?$/,
+          use: "ts-loader",
+          exclude: /node_modules/,
+        },
+      ],
+    },
+  };
+};
