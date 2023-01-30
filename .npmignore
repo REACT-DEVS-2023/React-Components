@@ -1,0 +1,15 @@
+tsconfig.json
+tailwind.config.js
+README.md
+package.json
+.gitignore
+.eslintrc
+.eslintignore
+src
+public
+node_modules
+configs
+.vscode
+.storybook
+.husky
+

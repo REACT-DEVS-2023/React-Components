@@ -1,5 +1,6 @@
 import path from "path";
 import fs from "fs";
+import CopyPlugin from "copy-webpack-plugin";
 
 module.exports = () => {
   let entry = {};
@@ -15,7 +16,7 @@ module.exports = () => {
     mode: "production",
     entry,
     output: {
-      path: path.resolve(__dirname, "reko"),
+      path: path.resolve(process.cwd(), "reko"),
       filename: "[name].bundle.js",
     },
     resolve: {
@@ -30,5 +31,10 @@ module.exports = () => {
         },
       ],
     },
+    plugins: [
+      new CopyPlugin({
+        patterns: [{ from: "./package.json", to: "./" }],
+      }),
+    ],
   };
 };
