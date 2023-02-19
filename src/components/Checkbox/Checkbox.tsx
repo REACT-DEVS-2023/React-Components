@@ -1,7 +1,13 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import React from "react";
-import { CheckboxProps } from "../../Types/Checkbox.type";
-import InputHelper from "../Inputhelper/InputHelper";
+import InputHelper from "../InputHelper/InputHelper";
+
+export interface CheckboxProps {
+  errorMessage?: string;
+  onChange: (event: any) => void;
+  value?: boolean;
+  disabled?: boolean;
+  text?: React.ReactElement;
+}
 
 const Checkbox: React.FC<CheckboxProps> = ({
   onChange,
